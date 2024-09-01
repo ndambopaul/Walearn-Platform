@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import "./Home.css"
 
@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe"
 
 import WhatStudentsSay from '../components/WhatStudentsSay';
-import AboutUs from '../components/AboutUs';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Team from '../components/Team';
 import HeroSection from '../components/HeroSection';
