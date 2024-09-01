@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.hero-section {
+    
+    background-size: cover;
+    color: rgb(6, 1, 1);
+    text-align: center;
+    padding: 100px 0;
+}
+.icon-section i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+.testimonial {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+/* Team Section Customization */
+#team h2 {
+    font-weight: bold;
+}
+
+#team .card {
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+#team .card:hover {
+    transform: translateY(-5px);
+}
+
+#team .card-img-top {
+    object-fit: cover;
+    height: 180px;
+}
+
+#team .btn-outline-primary, 
+#team .btn-outline-info, 
+#team .btn-outline-dark {
+    margin: 5px 2px;
+}
