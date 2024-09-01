@@ -8,6 +8,11 @@ body {
     text-align: center;
     padding: 100px 0;
 }
+
+.home {
+    background-color: rgb(244, 226, 209);
+}
+
 .icon-section i {
     font-size: 40px;
     margin-bottom: 10px;

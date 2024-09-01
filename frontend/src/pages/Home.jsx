@@ -18,7 +18,7 @@ import ContactUs from '../components/ContactUs';
 
 const Home = () => {
   return (
-    <div className=''>
+    <div className='home'>
       <Navbar />
       <HeroSection />
       <WhyChooseUs />
