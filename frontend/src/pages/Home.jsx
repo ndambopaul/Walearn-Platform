@@ -10,6 +10,10 @@ import WhatStudentsSay from '../components/WhatStudentsSay';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Team from '../components/Team';
 import HeroSection from '../components/HeroSection';
+import CourseCategories from '../components/CourseCategories';
+import PopularCourses from '../components/PopularCourses';
+import Instructors from '../components/Instructors';
+import InstructorsTestimonials from '../components/InstructorsTestimonials';
 
 const Home = () => {
   return (
@@ -17,9 +21,12 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <WhyChooseUs />
-      
-      <Team />
+      <CourseCategories />
+      <PopularCourses />
+      <Instructors />
+      <InstructorsTestimonials />
       <WhatStudentsSay />
+      <Team />
       <Subscribe />
       <Footer />
     </div>
