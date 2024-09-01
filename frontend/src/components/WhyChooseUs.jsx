@@ -2,7 +2,7 @@ import React from 'react'
 
 const WhyChooseUs = () => {
   return (
-    <div className="container mt-2 text-center icon-section">
+    <div className="container mt-2 text-center icon-section bg-light py-5">
     <h2>Why Choose Us?</h2>
     <div className="row">
         <div className="col-md-3">

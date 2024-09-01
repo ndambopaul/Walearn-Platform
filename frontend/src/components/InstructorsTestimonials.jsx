@@ -2,11 +2,11 @@ import React from 'react'
 
 const InstructorsTestimonials = () => {
   return (
-    <section id="instructors-testimonials" className="py-5">
+    <section id="instructors-testimonials" className="py-3">
     <div className="container">
         <h2 className="text-center mb-4">What Our Instructors Say</h2>
         <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <img src="instructor1.jpg" className="rounded-circle mb-3" alt="Instructor 1" style={{"width": "80px"}} />
@@ -15,7 +15,7 @@ const InstructorsTestimonials = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <img src="instructor2.jpg" className="rounded-circle mb-3" alt="Instructor 2" style={{"width": "80px"}} />
@@ -24,7 +24,7 @@ const InstructorsTestimonials = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <img src="instructor3.jpg" className="rounded-circle mb-3" alt="Instructor 3" style={{"width": "80px"}} />

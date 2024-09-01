@@ -10,7 +10,7 @@ const Team = () => {
         </div>
         <div class="row">
            
-            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch mb-1">
                 <div class="card shadow-sm border-0">
                     <img src="images/paulndambo.jpg" class="card-img-top image-fluid rounded-top" alt="Jane Doe" />
                     <div class="card-body text-center d-flex flex-column">
@@ -26,7 +26,7 @@ const Team = () => {
                 </div>
             </div>
           
-            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch mb-1">
                 <div class="card shadow-sm border-0">
                     <img src="images/paulndambo.jpg" class="card-img-top image-fluid rounded-top" alt="Jane Doe" />
                     <div class="card-body text-center d-flex flex-column">
@@ -42,7 +42,7 @@ const Team = () => {
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+            <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch mb-1">
                 <div class="card shadow-sm border-0">
                     <img src="images/paulndambo.jpg" class="card-img-top image-fluid rounded-top" alt="Jane Doe" />
                     <div class="card-body text-center d-flex flex-column">

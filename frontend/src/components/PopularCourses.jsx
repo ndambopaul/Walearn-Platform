@@ -4,9 +4,9 @@ const PopularCourses = () => {
   return (
     <section id="popular-courses" className="py-5">
     <div className="container">
-        <h2 className="text-center mb-4">Popular Courses</h2>
+        <h2 className="text-center mb-2">Popular Courses</h2>
         <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
@@ -18,7 +18,7 @@ const PopularCourses = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
@@ -30,7 +30,7 @@ const PopularCourses = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">

@@ -20,30 +20,11 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+          <li className="nav-item">
+              <a className="nav-link" href="/courses">
                 Courses
               </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Python Engineer Course
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    JavaScript Developer Course
-                  </a>
-                </li>
-              </ul>
             </li>
-
             <li className="nav-item">
               <a className="nav-link" href="/">
                 About

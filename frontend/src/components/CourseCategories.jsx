@@ -6,7 +6,7 @@ const CourseCategories = () => {
     <div className="container">
         <h2 className="text-center mb-4">Our Course Offerings</h2>
         <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-3 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
@@ -18,7 +18,7 @@ const CourseCategories = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
@@ -30,7 +30,7 @@ const CourseCategories = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
@@ -42,7 +42,7 @@ const CourseCategories = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 mb-1">
                 <div className="card h-100 text-center">
                     <div className="card-body">
                         <div className="icon mb-3">
