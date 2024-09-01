@@ -14,6 +14,7 @@ import CourseCategories from '../components/CourseCategories';
 import PopularCourses from '../components/PopularCourses';
 import Instructors from '../components/Instructors';
 import InstructorsTestimonials from '../components/InstructorsTestimonials';
+import ContactUs from '../components/ContactUs';
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
       <InstructorsTestimonials />
       <WhatStudentsSay />
       <Team />
+      <ContactUs />
       <Subscribe />
       <Footer />
     </div>
