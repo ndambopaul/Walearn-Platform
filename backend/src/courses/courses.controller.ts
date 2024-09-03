@@ -3,7 +3,7 @@ import { CoursesService } from './courses.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth-guard';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 import { User } from 'src/users/users.schemas';
-import { CourseDto, NewCourseAuthorDto } from './courses.dtos';
+import { CourseCategoryDto, CourseDto, CourseSubCategoryDto, NewCourseAuthorDto } from './courses.dtos';
 import { UsersService } from 'src/users/users.service';
 
 @Controller('courses')
@@ -12,6 +12,27 @@ export class CoursesController {
         private readonly coursesService: CoursesService,
         private readonly usersService: UsersService
     ) {}
+
+     // Course Categories
+    @Get("categories")
+     async getCourseCategories() {
+         return await this.coursesService.getCourseCategories()
+    }
+ 
+    @Post("categories")
+     async createCourseCategory(@Body(ValidationPipe) categoryDto: CourseCategoryDto) {
+         return await this.coursesService.createCourseCategory(categoryDto)
+    }
+
+    @Get("sub-categories")
+     async getCourseSubCategories() {
+        return this.coursesService.getCourseSubCategories()
+    }
+
+    @Post("sub-categories")
+    async createCourseSubCategory(@Body(ValidationPipe) subCategoryDto: CourseSubCategoryDto) {
+        return this.coursesService.createCourseSubCategory(subCategoryDto)
+    }
 
     @Get()
     async getCourses() {

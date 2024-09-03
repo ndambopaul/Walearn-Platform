@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, IsString } from "class-validator";
+import { IsEmail, IsEmpty, IsNotEmpty, IsPhoneNumber, IsString } from "class-validator";
 
 export class CustomerMessageDto {
     @IsString()
@@ -22,4 +22,9 @@ export class CustomerMessageDto {
 
     @IsString()
     content: string;
+}
+
+export class NewsLetterSubscriberDto {
+    @IsEmail()
+    email: string;
 }

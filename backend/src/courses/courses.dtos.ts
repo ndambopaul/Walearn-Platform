@@ -26,9 +26,39 @@ export class CourseDto {
     @IsNotEmpty()
     description: string;
 
+    @IsNotEmpty()
+    categoryId: Types.ObjectId;
+
+    @IsNotEmpty()
+    subCategoryId: Types.ObjectId;
+
 }
 
 export class NewCourseAuthorDto {
     @IsNotEmpty()
     authorId: Types.ObjectId
+}
+
+export class CourseCategoryDto {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+
+    @IsString()
+    @IsNotEmpty()
+    icon: string;
+
+    @IsString()
+    @IsNotEmpty()
+    description: string;
+}
+
+export class CourseSubCategoryDto {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+
+    @IsNotEmpty()
+    category: Types.ObjectId;
+
 }

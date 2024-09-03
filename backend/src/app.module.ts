@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NotificationsModule } from './notifications/notifications.module';
 import { CoursesModule } from './courses/courses.module';
+import { TeamModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { CoursesModule } from './courses/courses.module';
       inject: [ConfigService],
     }),
     UsersModule, 
-    AuthModule, NotificationsModule, CoursesModule
+    AuthModule, NotificationsModule, CoursesModule, TeamModule
   ],
   controllers: [AppController],
   providers: [AppService],

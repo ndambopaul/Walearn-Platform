@@ -1,6 +1,53 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { DataContext } from "../context/DataContext";
+import { BACKEND_URL } from "../services/constants";
 
 const ContactUs = () => {
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [message, setMessage] = useState("I won't mind a call for explanation");
+  const [interestedIn, setInterestedIn] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+
+  const { courseSubCategories } = useContext(DataContext);
+
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+     
+    const messageData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone_number: phoneNumber,
+      content: message,
+      course_interested: interestedIn
+    }
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/notifications/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(messageData)
+      })
+
+      if (response.ok) {
+        window.alert("Your message has been received, we will get back to you soon enough. Thank you!")
+        window.location.reload()
+      } else {
+        window.alert("Something went wrong!")
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log(messageData)
+  }
+
   return (
     <section id="contact-us" className="py-5">
       <div className="container">
@@ -8,7 +55,7 @@ const ContactUs = () => {
         <div className="row">
           <div className="col-md-8">
             <h5>Get in Touch</h5>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group mb-3">
                 <div className="row">
                   <div className="col">
@@ -18,6 +65,8 @@ const ContactUs = () => {
                       id="first_name"
                       name="first_name"
                       placeholder="First Name"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="col">
@@ -27,6 +76,8 @@ const ContactUs = () => {
                       id="last_name"
                       name="last_name"
                       placeholder="Last Name"
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -40,6 +91,8 @@ const ContactUs = () => {
                       id="phone_number"
                       name="phone_number"
                       placeholder="Phone Number"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="col">
@@ -49,30 +102,29 @@ const ContactUs = () => {
                       id="email"
                       name="email"
                       placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
               </div>
               <div className="form-group mb-3">
-                <select className="form-select" id="interested_in" name="interested_in">
-                    <option>What are you interested in?</option>
-                    <option>Software Development Bootcamp</option>
-                    <option>Data Science Bootcamp</option>
-                    <option>Machine Learning Bootcamp</option>
-                    <option>Frontend Development Bootcamp</option>
-                    <option>Backend Development Bootcamp</option>
-                    <option>Generative AI Bootcamp</option>
-                    <option>Data Analytics Bootcamp</option>
-                    <option>I don't know yet</option>
+                <label>What are you interested in?</label>
+                <select className="form-select" id="interested_in" name="interested_in" onChange={(e) => setInterestedIn(e.target.value)} required>
+                    {courseSubCategories.map((sub_category) => (
+                      <option value={sub_category.name} key={sub_category._id}>{sub_category.name}</option>
+                    ))}
+                    
                 </select>
               </div>
               <div className="form-group mb-3">
-                <label for="message">Message</label>
+                <label htmlFor="message">Message</label>
                 <textarea
                   className="form-control"
                   id="message"
                   rows="4"
                   placeholder="Help us understand you and your needs better!"
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">
@@ -103,8 +155,9 @@ const ContactUs = () => {
                 <i className="fab fa-linkedin"></i> LinkedIn
               </a>
             </div>
-            <h5>Our Location</h5>
-            <p>1234 Education Lane, Knowledge City, 56789</p>
+            <h5></h5>
+            <p className="btn btn-outline-primary btn-sm mx-1"><i class="fa-solid fa-phone"></i> +254745491093</p>
+            <p className="btn btn-outline-primary btn-sm mx-1"><i class="fa-solid fa-envelope"></i> paulkadabo@gmail.com</p>
           </div>
         </div>
       </div>
