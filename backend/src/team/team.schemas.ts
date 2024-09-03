@@ -10,6 +10,15 @@ export class TeamMember {
     name: string;
 
     @Prop({ required: true })
+    email: string;
+
+    @Prop({ required: true })
+    phone_number: string;
+
+    @Prop({ required: true })
+    gender: string;
+
+    @Prop({ required: true })
     position: string;
 
     @Prop({ required: true })
