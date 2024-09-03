@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .status {
+            font-weight: bold;
+        }
+        .status.completed {
+            color: green;
+        }
+        .status.pending {
+            color: orange;
+        }
+        .status.overdue {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Teacher Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">My Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#assignments">Assignments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#grades">Grades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#settings">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Welcome, [Teacher Name]</h1>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Courses Taught</h5>
+                        <p class="card-text">You are teaching 4 courses.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignments Pending Review</h5>
+                        <p class="card-text">You have 10 assignments pending review.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Messages</h5>
+                        <p class="card-text">You have 3 new messages.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card text-bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Upcoming Deadlines</h5>
+                        <p class="card-text">2 deadlines this week.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assignments Table -->
+        <div class="card">
+            <div class="card-header">
+                Assignments to Review
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Course</th>
+                                <th scope="col">Assignment Title</th>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data Science 101</td>
+                                <td>Final Project</td>
+                                <td>September 10, 2024</td>
+                                <td class="status pending">Pending Review</td>
+                                <td><a href="#" class="btn btn-primary btn-sm">Review Now</a></td>
+                            </tr>
+                            <tr>
+                                <td>Machine Learning Basics</td>
+                                <td>Midterm Exam</td>
+                                <td>September 12, 2024</td>
+                                <td class="status completed">Reviewed</td>
+                                <td><a href="#" class="btn btn-primary btn-sm">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>Software Development</td>
+                                <td>Module 3 Assignment</td>
+                                <td>September 8, 2024</td>
+                                <td class="status pending">Pending Review</td>
+                                <td><a href="#" class="btn btn-primary btn-sm">Review Now</a></td>
+                            </tr>
+                            <tr>
+                                <td>Data Analytics</td>
+                                <td>Quiz 2</td>
+                                <td>September 9, 2024</td>
+                                <td class="status overdue">Overdue</td>
+                                <td><a href="#" class="btn btn-primary btn-sm">Review Now</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

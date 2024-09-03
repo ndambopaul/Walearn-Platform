@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UserDto } from './users.dtos';
 import { UsersService } from './users.service';
-import { LocalAuthGuard } from 'src/auth/guards/local.auth-guards';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 import { User } from './users.schemas';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth-guard';
@@ -11,7 +10,12 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     @Get()
-    async getAllUsers() {
+    @UseGuards(JwtAuthGuard)
+    async getAllUsers(@CurrentUser() user: User) {
+        const userRole = user.role
+        if (userRole != "ADMIN") {
+            return { msg: "Only an admin can request for users details" }
+        }
         return this.usersService.getAllUsers()
     }
 

@@ -11,6 +11,7 @@ export class UsersService {
         @InjectModel(User.name) private readonly userModel: Model<User>
     ) {}
 
+
     async getAllUsers() {
         return this.userModel.find({})
     }
