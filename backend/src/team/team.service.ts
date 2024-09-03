@@ -28,4 +28,10 @@ export class TeamService {
     async editTeamMember(teamMemberId: string, memberUpdateDto: TeamMemberUpdateDto) {
         return await this.teamModel.findByIdAndUpdate(teamMemberId, { ...memberUpdateDto }, { new: true })
     }
+
+    async updateTeamMemberImage(teamMemberId: string, image: string) {
+        const teamMember = await this.getOneTeamMember(teamMemberId)
+        teamMember.image = image
+        return await teamMember.save()
+    }
 }

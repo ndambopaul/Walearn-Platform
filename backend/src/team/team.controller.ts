@@ -25,11 +25,19 @@ export class TeamController {
         if (!file) {
             return { failed: "A team member must have an image" }
         }
+        
         return this.teamService.createTeamMember(memberDto, file.filename)
+    }
+
+    @Patch("update-image/:id")
+    @UseInterceptors(FileInterceptor("image", { storage: createMulterStorage("./uploads/team")}))
+    async updateTeamMemberImage(@Param("id") id: string, @UploadedFile() image: Express.Multer.File) {
+        return this.teamService.updateTeamMemberImage(id, image.filename)
     }
 
     @Patch(":id")
     async editTeamMember(@Param("id") id: string, @Body(ValidationPipe) teamMemberUpdateDto: TeamMemberUpdateDto) {
+        console.log(teamMemberUpdateDto)
         return this.teamService.editTeamMember(id, teamMemberUpdateDto)
     }
 }
