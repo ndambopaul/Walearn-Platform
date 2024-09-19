@@ -12,7 +12,7 @@ import Grades from './instructors/Grades'
 import Assignments from './instructors/Assignments'
 
 import Dashboard from './Dashboard'
-
+import "./App.css"
 
 function App() {
   return (
