@@ -1,25 +1,30 @@
-import React from 'react';
 
-import "./Home.css"
+// import "../tailwind.css";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Subscribe from "../components/Subscribe"
-
-import WhatStudentsSay from '../components/WhatStudentsSay';
-import WhyChooseUs from '../components/WhyChooseUs';
-import Team from '../components/Team';
-import HeroSection from '../components/HeroSection';
-import CourseCategories from '../components/CourseCategories';
-import PopularCourses from '../components/PopularCourses';
-import Instructors from '../components/Instructors';
-import InstructorsTestimonials from '../components/InstructorsTestimonials';
-import ContactUs from '../components/ContactUs';
-
+import Header from "../components/Navbar/index";
+import Hero from "../components/Hero/Hero";
+import WhyChooseUs from "../components/WhyChooseUs/index";
+import PopularCourses from "../components/Courses/index";
+import Instructors from "../components/Instructors/index";
+import InstructorTestimonials from "../components/WhatInstructorsSay/index";
+import  StudentTestimonial from "../components/WhatStudentsSay/index";
+import Team from "../components/Team/index";
+import  Contact from "../components/contact/index";
+import Footer from "../components/Footer/footer"
 const Home = () => {
   return (
     <div className='home'>
-      <Navbar />
+      <Header />
+      <Hero />
+      <WhyChooseUs />
+      <PopularCourses />
+      <Instructors />
+      <InstructorTestimonials />
+      <StudentTestimonial />
+      <Team />
+      <Contact />
+      <Footer />
+      {/* <Navbar />
       <HeroSection />
       <WhyChooseUs />
       <CourseCategories />
@@ -30,7 +35,7 @@ const Home = () => {
       <Team />
       <ContactUs />
       <Subscribe />
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }
