@@ -8,6 +8,7 @@ const Sidebar = () => {
         <a href="/student-courses">My Courses</a>
         <a href="/student-assignments">Assignments</a>
         <a href="/student-grades">Grades</a>
+        <a href="/student-payments">Payments</a>
         <a href="#settings">Settings</a>
         <a href="#logout">Logout</a>
     </div>

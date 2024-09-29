@@ -14,7 +14,7 @@ export class CoursesService {
     ){}
 
     async getCourses() {
-        return this.courseModel.find({}).populate("creator")
+        return this.courseModel.find({}).populate("authors")
     }
 
     async createCourse(courseDto: CourseDto, user: User) {

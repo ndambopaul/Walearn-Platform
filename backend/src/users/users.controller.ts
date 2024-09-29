@@ -4,10 +4,14 @@ import { UsersService } from './users.service';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 import { User } from './users.schemas';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth-guard';
+import { StudentsService } from 'src/students/students.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly studentsService: StudentsService
+    ) {}
 
     @Get()
     @UseGuards(JwtAuthGuard)
@@ -28,5 +32,11 @@ export class UsersController {
     @UseGuards(JwtAuthGuard)
     async getUserProfile(@CurrentUser() user: User) {
         return user
+    }
+
+    @Get("student-profile")
+    @UseGuards(JwtAuthGuard)
+    async getStudentProfile(@CurrentUser() user: User) {
+        return this.usersService.getStudentProfile(user)
     }
 }

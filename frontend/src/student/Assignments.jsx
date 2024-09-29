@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Wrapper from './components/Wrapper'
+import Dayjs from 'dayjs'
+
+import { BACKEND_URL } from '../services/constants'
+
 
 const StudentAssignments = () => {
+    const [assignments, setAssignments] = useState([])
+
+    useEffect(() => {
+        const getAssignments = async () => {
+            const response = await fetch(`${BACKEND_URL}/students/assignments`)
+            const data = await response.json()
+            console.log(data)
+            setAssignments(data)
+        }
+        getAssignments()
+    }, [])
+
   return (
+
     <Wrapper>
         <div className="card">
             <h2>Your Assignments</h2>
             <table className="assignments-table">
                 <thead>
                     <tr>
-                        <th>Course</th>
+                        <th>#</th>
                         <th>Assignment Title</th>
                         <th>Due Date</th>
                         <th>Status</th>
@@ -17,34 +34,16 @@ const StudentAssignments = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Data Science 101</td>
-                        <td>Project Proposal</td>
-                        <td>September 5, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Machine Learning Basics</td>
-                        <td>Homework 3</td>
-                        <td>September 10, 2024</td>
-                        <td className="status completed">Completed</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Data Analytics</td>
-                        <td>Final Report</td>
-                        <td>September 1, 2024</td>
-                        <td className="status overdue">Overdue</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Software Development</td>
-                        <td>Unit 2 Quiz</td>
-                        <td>September 8, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
+                    {assignments.map((assignment, index) => (
+                        <tr key={assignment._id}>
+                            <td>{index + 1}</td>
+                            <td>{assignment.title}</td>
+                            <td>{Dayjs(assignment.due_date).format("YYYY-MM-DD")}</td>
+                            <td className="status pending">{assignment.status}</td>
+                            <td><a href="#">View Details</a></td>
+                        </tr> 
+                    ))}
+                    
                 </tbody>
             </table>
     </div>

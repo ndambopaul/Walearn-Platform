@@ -1,52 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Wrapper from './components/Wrapper'
+import { DataContext } from '../context/DataContext'
 
 const StudentCourses = () => {
+    const { courses, studentDetails } = useContext(DataContext)
+    
+    console.log(studentDetails)
   return (
     <Wrapper>
         <div className="card">
             <h2>Your Courses</h2>
-            <table className="assignments-table">
-                <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Assignment Title</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Data Science 101</td>
-                        <td>Project Proposal</td>
-                        <td>September 5, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Machine Learning Basics</td>
-                        <td>Homework 3</td>
-                        <td>September 10, 2024</td>
-                        <td className="status completed">Completed</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Data Analytics</td>
-                        <td>Final Report</td>
-                        <td>September 1, 2024</td>
-                        <td className="status overdue">Overdue</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Software Development</td>
-                        <td>Unit 2 Quiz</td>
-                        <td>September 8, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className="row">
+                {studentDetails?.courses.map((course) => (
+                    <div className="col" key={course._id}>
+                    <div className="card mb-4">
+                        <div className="card-body">
+                            <h5 className="card-title fw-bold">{course.title}</h5>
+                            <p className="card-text">{course.description}</p>
+                            {course.authors && course.authors.map((author) => (
+                                <p key={author._id} className="card-text"><small className="text-muted">Instructor: {author.first_name} {author.last_name}</small></p>
+                            ))}
+                            <p className="card-text"><small className="text-muted">Duration: {course.course_period}</small></p>
+                            <a href="/course-details" className="btn btn-primary">View Course</a>
+                        </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
     </div>
     </Wrapper>
   )
