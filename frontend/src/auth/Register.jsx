@@ -52,7 +52,8 @@ const Register = () => {
     <div className='container mt-4'>
         <div className="row">
             <div className="col-3"></div>
-            <div className="col-6">
+            <div className="col-md-6 p-3 shadow-md rounded bg-white">
+            <h5 className='text-center mb-2'>SKILLFORGE REGISTRATION</h5>
                 <form onSubmit={handleSubmit}>
                     <div className="row mb-3">
                         <div className="col">
@@ -92,16 +93,10 @@ const Register = () => {
                             <option value="Female">Female</option>
                         </select>
                         </div>
-                        <div className="col">
-                        <label className='form-label'>Role</label>
-                        <select className='form-select' id='role' name='role' onChange={(e) => setRole(e.target.value)}>
-                            <option value="STUDENT">Student</option>
-                            <option value="INSTRUCTOR">Instructor</option>
-                        </select>
-                        </div>
+                        
                     </div>
-                    <div className="text-center">
-                        <button className="btn btn-primary" type="submit">REGISTER</button>
+                    <div className="text-center mt-3">
+                        <button className="btn btn-primary w-100" type="submit">REGISTER</button>
                         <br/>
                         <p>Already have an account? <a href='/auth/login'>Login Here</a></p>
                     </div>

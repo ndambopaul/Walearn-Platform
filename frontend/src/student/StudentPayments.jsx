@@ -5,7 +5,7 @@ const StudentPayments = () => {
   return (
     <Wrapper>
         <div className="card">
-            <h2>Your Assignments</h2>
+            <h2>Your Payments</h2>
             <table className="assignments-table">
                 <thead>
                     <tr>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Wrapper from './components/Wrapper'
 import Dayjs from 'dayjs'
+import { IoEyeOutline } from "react-icons/io5";
 
 import { BACKEND_URL } from '../services/constants'
+import { Link } from 'react-router-dom'
 
 
 const StudentAssignments = () => {
@@ -40,7 +42,12 @@ const StudentAssignments = () => {
                             <td>{assignment.title}</td>
                             <td>{Dayjs(assignment.due_date).format("YYYY-MM-DD")}</td>
                             <td className="status pending">{assignment.status}</td>
-                            <td><a href="#">View Details</a></td>
+                            
+                            <td>
+                                <Link to={`/student-assignments/${assignment._id}`} className='btn btn-info btn-sm'>
+                                <IoEyeOutline />
+                                </Link>
+                            </td>
                         </tr> 
                     ))}
                     

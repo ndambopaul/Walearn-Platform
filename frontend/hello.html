@@ -1,172 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Assignment Details</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Custom Styling */
         body {
-            background-color: #f4f4f4;
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
         }
-        .sidebar {
-            height: 100vh;
-            background-color: #333;
-            color: white;
-            padding-top: 20px;
+
+        .container {
+            max-width: 800px;
         }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-        }
-        .sidebar a:hover {
-            background-color: #575757;
-        }
-        .content {
-            padding: 20px;
-        }
+
         .card {
-            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .status {
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
             font-weight: bold;
+            font-size: 1.5rem;
         }
-        .status.completed {
-            color: green;
+
+        .assignment-info {
+            font-size: 1.1rem;
+            color: #555;
         }
-        .status.pending {
-            color: orange;
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
         }
-        .status.overdue {
-            color: red;
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+
+        .previous-submissions li {
+            background-color: #f8f9fa;
+        }
+
+        .previous-submissions button {
+            color: #007bff;
         }
     </style>
 </head>
+
 <body>
-    <div className="container-fluid">
-        <div className="row">
-            <!-- Sidebar -->
-            <nav className="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
-                <div className="position-sticky">
-                    <h3 className="text-center">Dashboard</h3>
-                    <ul className="nav flex-column">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#profile">Profile</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#courses">My Courses</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#assignments">Assignments</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#grades">Grades</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#settings">Settings</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#logout">Logout</a>
-                        </li>
-                    </ul>
+    <div class="container mt-5">
+        <!-- Assignment Header -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Assignment: Build a Portfolio Website
+            </div>
+            <div class="card-body">
+                <div class="assignment-info">
+                    <p><strong>Course:</strong> Web Development Fundamentals</p>
+                    <p><strong>Instructor:</strong> John Doe</p>
+                    <p><strong>Posted on:</strong> September 25, 2024</p>
+                    <p><strong>Due date:</strong> October 5, 2024</p>
                 </div>
-            </nav>
+            </div>
+        </div>
 
-            <!-- Main Content -->
-            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
-                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 className="h2">Welcome Back, [Student Name]!</h1>
-                </div>
+        <!-- Assignment Description -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4>Description</h4>
+                <p>
+                    Your task is to create a personal portfolio website using HTML, CSS, and JavaScript. The website should include your personal bio, projects, and a contact form. Ensure that the website is responsive and follows good design principles.
+                </p>
+            </div>
+        </div>
 
-                <!-- Overview Cards -->
-                <div className="row">
-                    <div className="col-md-6 col-lg-3 mb-4">
-                        <div className="card text-bg-light">
-                            <div className="card-body">
-                                <h5 className="card-title">Enrolled Courses</h5>
-                                <p className="card-text">You are currently enrolled in 4 courses.</p>
-                            </div>
-                        </div>
+        <!-- Submission Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4>Submit Your Assignment</h4>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label">Upload your files (ZIP, PDF, or Word document)</label>
+                        <input class="form-control" type="file" id="fileUpload" name="assignmentFile">
                     </div>
-                    <div className="col-md-6 col-lg-3 mb-4">
-                        <div className="card text-bg-light">
-                            <div className="card-body">
-                                <h5 className="card-title">Assignments Due</h5>
-                                <p className="card-text">You have 2 assignments due this week.</p>
-                            </div>
-                        </div>
+                    <div class="mb-3">
+                        <label for="comments" class="form-label">Comments (Optional)</label>
+                        <textarea class="form-control" id="comments" rows="3" name="comments" placeholder="Add any comments about your submission"></textarea>
                     </div>
-                    
-                    <div className="col-md-6 col-lg-3 mb-4">
-                        <div className="card text-bg-light">
-                            <div className="card-body">
-                                <h5 className="card-title">Recent Grades</h5>
-                                <p className="card-text">Your latest grade: 92% on "Data Science Project".</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Submit Assignment</button>
+                </form>
+            </div>
+        </div>
 
-                <!-- Assignments Table -->
-                <div className="card">
-                    <div className="card-header">
-                        Your Assignments
-                    </div>
-                    <div className="card-body">
-                        <div className="table-responsive">
-                            <table className="table table-hover">
-                                <thead className="table-dark">
-                                    <tr>
-                                        <th scope="col">Course</th>
-                                        <th scope="col">Assignment Title</th>
-                                        <th scope="col">Due Date</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Data Science 101</td>
-                                        <td>Project Proposal</td>
-                                        <td>September 5, 2024</td>
-                                        <td className="status pending">Pending</td>
-                                        <td><a href="#" className="btn btn-primary btn-sm">View Details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Machine Learning Basics</td>
-                                        <td>Homework 3</td>
-                                        <td>September 10, 2024</td>
-                                        <td className="status completed">Completed</td>
-                                        <td><a href="#" className="btn btn-primary btn-sm">View Details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Data Analytics</td>
-                                        <td>Final Report</td>
-                                        <td>September 1, 2024</td>
-                                        <td className="status overdue">Overdue</td>
-                                        <td><a href="#" className="btn btn-primary btn-sm">View Details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Software Development</td>
-                                        <td>Unit 2 Quiz</td>
-                                        <td>September 8, 2024</td>
-                                        <td className="status pending">Pending</td>
-                                        <td><a href="#" className="btn btn-primary btn-sm">View Details</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
+        <!-- Previous Submissions Section -->
+        <div class="card">
+            <div class="card-body">
+                <h4>Previous Submissions</h4>
+                <ul class="list-group list-group-flush previous-submissions">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>Submission 1:</strong> Portfolio_Website.zip</span>
+                        <span>Submitted on September 27, 2024</span>
+                        <button class="btn btn-sm btn-link">Download</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>Submission 2:</strong> Portfolio_v2.zip</span>
+                        <span>Submitted on October 1, 2024</span>
+                        <button class="btn btn-sm btn-link">Download</button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <!-- Bootstrap JS (Optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

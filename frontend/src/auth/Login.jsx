@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { BACKEND_URL } from '../services/constants';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [email, setEmail] = useState(null);
@@ -28,7 +29,8 @@ const Login = () => {
             })
 
             if (response.ok) {
-                window.alert("Login was successful")
+                toast.success("Login was successful")
+
                 const data = await response.json()
                 const token = data.accessToken
                 Cookies.set("token", token, {expires: (1/72)})
@@ -44,24 +46,24 @@ const Login = () => {
     }
 
   return (
-    <div className='container mt-4'>
+    <div className='container mt-5'>
         <div className="row">
             <div className="col-3"></div>
-            <div className="col-6">
+            <div className="col-6 p-5 shadow-md rounded bg-white">
                 <form onSubmit={handleLogin}>
-                    <h3 className='text-center'>WALEARN LOGIN</h3>
+                    <h3 className='text-center'>SKILLFORGE LOGIN</h3>
                     <div className="mb-3">
                         <label className='form-label'>Email</label>
-                        <input type='email' id='email' name='email' className='form-control' onChange={(e) => setEmail(e.target.value)} />
+                        <input type='email' id='email' name='email' className='form-control' onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
                     </div>
                     <div className="mb-3">
                         <label className='form-label'>Password</label>
-                        <input type='password' id='password' name='password' className='form-control' onChange={(e) => setPassword(e.target.value)} />
+                        <input type='password' id='password' name='password' className='form-control' onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
                     </div>
                     <div className="text-center">
-                        <button className="btn btn-primary" type="submit">Login</button>
+                        <button className="btn btn-primary w-100" type="submit">Login</button>
                         <br/>
-                        <p>No account yet? <a href='/auth/register'>Register Here</a></p>
+                        <p className='mt-3'>No account yet? <a href='/auth/register'>Register Here</a></p>
                     </div>
                 </form>
             </div>
