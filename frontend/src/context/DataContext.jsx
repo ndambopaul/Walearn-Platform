@@ -12,7 +12,7 @@ export const DataContextProvider = ({ children }) => {
     const [assignments, setAssignments] = useState([])
 
     const token = Cookies.get('token');
-    console.log(token)
+    
 
     useEffect(() => {
         const fetchCategoriesData = async () => {

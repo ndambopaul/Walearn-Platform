@@ -85,6 +85,83 @@ export class Course {
     createdAt: Date;
 };
 
-export const CourseSchema = SchemaFactory.createForClass(Course)
-export const CourseCategorySchema = SchemaFactory.createForClass(CourseCategory)
+
+@Schema({ timestamps: true })
+export class CourseContent  {
+    @Prop({ type: SchemaTypes.ObjectId, auto: true })
+    _id: Types.ObjectId;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Course" })
+    course: Course;
+
+    @Prop({ required: true })
+    title: string;
+
+    @Prop({ default: Date.now })
+    createdAt: Date;
+}
+
+@Schema({ timestamps: true })
+export class CourseContentPart  {
+    @Prop({ type: SchemaTypes.ObjectId, auto: true })
+    _id: Types.ObjectId;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "CourseContent" })
+    content: CourseContent;
+
+    @Prop({ required: true })
+    title: string;
+
+    @Prop({ default: Date.now })
+    createdAt: Date;
+}
+
+
+@Schema({ timestamps: true })
+export class CourseMaterial  {
+    @Prop({ type: SchemaTypes.ObjectId, auto: true })
+    _id: Types.ObjectId;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "CourseContentPart" })
+    coursecontentpart: CourseContentPart;
+
+    @Prop({ required: true })
+    title: string;
+
+    @Prop({ required: true })
+    content: string;
+
+    @Prop({ required: false })
+    additional_content: string;
+
+    @Prop({ default: Date.now })
+    createdAt: Date;
+}
+
+@Schema({ timestamps: true })
+export class ContentLink  {
+    @Prop({ type: SchemaTypes.ObjectId, auto: true })
+    _id: Types.ObjectId;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "CourseMaterial" })
+    coursematerial: CourseMaterial;
+
+    @Prop({ required: true })
+    title: string;
+
+    @Prop({ required: false })
+    content_link: string;
+
+    @Prop({ default: Date.now })
+    createdAt: Date
+}
+
+
+export const CourseSchema = SchemaFactory.createForClass(Course);
+export const CourseCategorySchema = SchemaFactory.createForClass(CourseCategory);
 export const CourseSubCategorySchema = SchemaFactory.createForClass(CourseSubCategory);
+
+export const CourseContentSchema = SchemaFactory.createForClass(CourseContent);
+export const CourseContentPartSchema = SchemaFactory.createForClass(CourseContentPart);
+export const CourseMaterialSchema = SchemaFactory.createForClass(CourseMaterial);
+export const ContentLinkSchema = SchemaFactory.createForClass(ContentLink)

@@ -1,50 +1,64 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Wrapper from './components/Wrapper'
+import Cookies from "js-cookie"
+import Dayjs from 'dayjs'
+import { BACKEND_URL } from '../services/constants';
+import { FaEdit } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
+import EditAssignmentSubmission from './components/EditAssignmentSubmission';
+
 
 const StudentGrades = () => {
+    const [grades, setGrades] = useState([])
+
+    useEffect(() => {
+        const getGrades = async() => {
+            const response = await fetch(`${BACKEND_URL}/students/student-grades`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${Cookies.get('token')}`
+                }
+            });
+            const data = await response.json();
+            console.log(data)
+            setGrades(data)
+        }
+        getGrades();
+    }, [0])
+
   return (
     <Wrapper>
+        <EditAssignmentSubmission />
         <div className="card">
             <h2>Your Grades</h2>
             <table className="assignments-table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Course</th>
                         <th>Assignment Title</th>
                         <th>Due Date</th>
+                        <th>Marks</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th colSpan={2}></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Data Science 101</td>
-                        <td>Project Proposal</td>
-                        <td>September 5, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Machine Learning Basics</td>
-                        <td>Homework 3</td>
-                        <td>September 10, 2024</td>
-                        <td className="status completed">Completed</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Data Analytics</td>
-                        <td>Final Report</td>
-                        <td>September 1, 2024</td>
-                        <td className="status overdue">Overdue</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Software Development</td>
-                        <td>Unit 2 Quiz</td>
-                        <td>September 8, 2024</td>
-                        <td className="status pending">Pending</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
+                {grades.map((grade, index) => (
+                    <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{grade?.course.title}</td>
+                        <td>{grade?.assignment.title}</td>
+                        <td>{Dayjs(grade?.assignment.due_date).format("YYYY-MM-DD HH:mm")}</td>
+                        <td>{grade.grade}</td>
+                        <td className="status">{grade.status}</td>
+                        <td><a href="#" className='btn btn-info btn-sm'><IoEyeOutline /></a></td>
+                        <td><a href="#" className='btn btn-primary btn-sm' data-bs-toggle="modal" data-bs-target="#editGradModal"><FaEdit /></a></td>
+                </tr>
+                ))}
+                    
+                  
                 </tbody>
             </table>
     </div>

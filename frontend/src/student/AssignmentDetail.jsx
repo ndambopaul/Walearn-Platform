@@ -1,29 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Wrapper from "./components/Wrapper";
 import "./AssignmentDetail.css";
 
+import Cookies from "js-cookie"
 import Dayjs from 'dayjs';
 
 import { BACKEND_URL } from '../services/constants';
+import { DataContext } from '../context/DataContext';
+import { toast } from 'react-toastify';
 
 const AssignmentDetail = () => {
 
     const { id } = useParams();
+    const { studentDetails } = useContext(DataContext);
 
     const [assignment, setAssignment] = useState(null);
+    const [submissionLink, setSubmissionLink] = useState(null);
 
     useEffect(() => {
         const getAssignment = async() => {
             const response = await fetch(`${BACKEND_URL}/students/assignments/${id}`);
             const data = await response.json();
-            console.log(data);
             setAssignment(data);
         }
         getAssignment();
     }, [id])
 
-    console.log(`Assignment ID: ${id}`);
+    const submitAssignment = async(e) => {
+        e.preventDefault();
+
+        const submissionData = {
+            assignment: id,
+            student: studentDetails?.student._id,
+            course: assignment?.course._id,
+            submission_link: submissionLink
+        }
+
+        console.log(submissionData)
+        try {
+            const response = await fetch(`${BACKEND_URL}/students/grades`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${Cookies.get('token')}`
+                },
+                body: JSON.stringify(submissionData)
+            })
+            if (response.ok) {
+                toast.success("Assignment submitted successfully")
+            }
+            
+        } catch (error) {
+            toast.error("Assignment could not be submitted")
+        }
+    }
 
   return (
     <Wrapper>
@@ -54,9 +85,9 @@ const AssignmentDetail = () => {
         <div className="card mb-4">
             <div className="card-body">
                 <h4>Submit Your Assignment</h4>
-                <form action="#" method="POST" encType="multipart/form-data">
+                <form onSubmit={submitAssignment}>
                     <div className="mb-3">
-                        <input className="form-control" type="text" id="project_link" name="project_link" placeholder='Project Link' />
+                        <input className="form-control" type="text" id="project_link" name="project_link" placeholder='Project Link' onChange={(e) => setSubmissionLink(e.target.value)} />
                     </div>
                     <button type="submit" className="btn btn-primary btn-lg w-100">Submit Assignment</button>
                 </form>

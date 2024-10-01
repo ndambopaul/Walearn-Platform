@@ -5,6 +5,8 @@ import { CurrentUser } from 'src/auth/current-user.decorator';
 import { User } from 'src/users/users.schemas';
 import { CourseCategoryDto, CourseDto, CourseSubCategoryDto, NewCourseAuthorDto } from './courses.dtos';
 import { UsersService } from 'src/users/users.service';
+import { CourseContentDto, CourseContentPartDto, CourseMaterialDto } from './course-content.dtos';
+import { ContentLinkDto } from './content-link.dtos';
 
 @Controller('courses')
 export class CoursesController {
@@ -51,6 +53,60 @@ export class CoursesController {
             return { failed: "Only an instructor can create a course!!" }
         }
         return this.coursesService.createCourse(courseDto, user)
+    }
+
+    @Post("course-modules")
+    @UseGuards(JwtAuthGuard)
+    async createCourseContent(@CurrentUser() user: User, @Body(ValidationPipe) courseContentDto: CourseContentDto) {
+        return this.coursesService.createCourseContent(courseContentDto)
+    }
+
+    @Get("course-modules/:id")
+    @UseGuards(JwtAuthGuard)
+    async getCourseContent(@Param("id") id: string) {
+        return this.coursesService.getCourseContent(id)
+    }
+
+    @Post("course-module-parts")
+    @UseGuards(JwtAuthGuard)
+    async createCourseContentPart(@CurrentUser() user: User, @Body(ValidationPipe) courseContentPartDto: CourseContentPartDto) {
+        return this.coursesService.createCourseContentPart(courseContentPartDto)
+    }
+
+    @Get("course-module-parts/:id")
+    @UseGuards(JwtAuthGuard)
+    async getCourseContentPart(@Param("id") id: string) {
+        return this.coursesService.getCourseContentPart(id)
+    }
+
+    @Post("course-materials")
+    @UseGuards(JwtAuthGuard)
+    async createCourseMaterial(@CurrentUser() user: User, @Body(ValidationPipe) courseMaterialDto: CourseMaterialDto) {
+        return this.coursesService.createCourseMaterial(courseMaterialDto)
+    }
+
+    @Get("course-materials/:id")
+    @UseGuards(JwtAuthGuard)
+    async getCourseMaterial(@Param("id") id: string) {
+        return this.coursesService.getCourseMaterial(id)
+    }
+
+    @Get("course-material-details/:id")
+    @UseGuards(JwtAuthGuard)
+    async getCourseMaterialDetails(@Param("id") id: string) {
+        return this.coursesService.getCourseMaterialDetails(id)
+    }
+
+    @Get("content-links/:id")
+    @UseGuards(JwtAuthGuard)
+    async getContentLinks(@Param("id") id: string) {
+        return this.coursesService.getContentLinks(id)
+    }
+
+    @Post("content-links")
+    @UseGuards(JwtAuthGuard)
+    async createContentLink(@CurrentUser() user: User, @Body(ValidationPipe) contentLinkDto: ContentLinkDto) {
+        return this.coursesService.createContentLink(contentLinkDto)
     }
 
     @Post(":id")

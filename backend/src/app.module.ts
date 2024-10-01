@@ -9,6 +9,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { CoursesModule } from './courses/courses.module';
 import { TeamModule } from './team/team.module';
 import { StudentsModule } from './students/students.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { StudentsModule } from './students/students.module';
       inject: [ConfigService],
     }),
     UsersModule, 
-    AuthModule, NotificationsModule, CoursesModule, TeamModule, StudentsModule
+    AuthModule, NotificationsModule, CoursesModule, TeamModule, StudentsModule, PaymentsModule
   ],
   controllers: [AppController],
   providers: [AppService],

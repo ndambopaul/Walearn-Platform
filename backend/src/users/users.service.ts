@@ -15,7 +15,6 @@ export class UsersService {
         @InjectModel(Course.name) private readonly CourseModel: Model<Course>
     ) {}
 
-
     async getAllUsers() {
         return this.userModel.find({})
     }

@@ -17,14 +17,7 @@ const Analytics = () => {
                 <h3>Assignments Due</h3>
                 <p>You have 2 assignments due this week.</p>
             </div>
-            <div className="card">
-                <h3>Upcoming Events</h3>
-                <p>No events scheduled.</p>
-            </div>
-            <div className="card">
-                <h3>Recent Grades</h3>
-                <p>Your latest grade: 92% on "Data Science Project".</p>
-            </div>
+            
         </div>
     </>
   )

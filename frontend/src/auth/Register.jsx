@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { BACKEND_URL } from '../services/constants';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
     const [username, setUsername] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [gender, setGender] = useState(null);
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState("STUDENT");
     const [password, setPassword] = useState(null);
 
     const handleSubmit = async(e) => {
@@ -35,9 +38,10 @@ const Register = () => {
             })
 
             if (response.ok) {
-                window.alert("User account successfully created!!")
+                toast.success("User account successfully created!!")
+                navigate("/auth/login")
             } else {
-                window.alert("Something went wrong!!")
+                toast.error("Something went wrong!!")
             }
         } catch (error) {
             console.log(error)

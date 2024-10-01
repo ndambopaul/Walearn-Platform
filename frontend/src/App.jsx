@@ -11,6 +11,7 @@ import CourseModules from './student/CourseModules'
 import CourseModuleParts from './student/CourseModuleParts'
 import CourseTopics from './student/CourseTopics'
 import CourseNotes from './student/CourseNotes'
+import StudentAttendnaces from "./student/StudentAttendances"
 
 import InstructorCourses from './instructors/Courses';
 import Students from './instructors/Students'
@@ -48,6 +49,7 @@ function App() {
             <Route path='/course-topics/:id' element={<CourseTopics />} />
             <Route path='/course-notes/:id' element={<CourseNotes />} />
             <Route path='/student-payments' element={<StudentPayments />} />
+            <Route path='/student-attendances' element={<StudentAttendnaces />} />
           </Route>
       
           <Route path='/auth/register' element={<Register />} />

@@ -10,6 +10,7 @@ body {
     padding: 15px;
     text-align: center;
 }
+/*
 .sidebar {
     width: 250px;
     background-color: #333;
@@ -26,6 +27,55 @@ body {
 }
 .sidebar a:hover {
     background-color: #575757;
+}
+    */
+/* Sidebar base style */
+.sidebar {
+    background-color: #008080; /* Dark Gray */
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+/* Sidebar text */
+.sidebar a {
+    color: #FFFFFF; /* Sky Blue */
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar hover effect */
+.sidebar a:hover {
+    background-color: #3B3B3B; /* Slightly lighter gray for hover */
+    color: #FFF9C4; /* Light yellow for hover text */
+}
+
+/* Sidebar headings */
+.sidebar h2 {
+    color: #87CEEB; /* Sky Blue */
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Optional style for icons next to text */
+.sidebar i {
+    margin-right: 10px;
+    color: #87CEEB; /* Sky Blue */
+}
+
+/* Active link in sidebar */
+.sidebar .active {
+    background-color: #444444; /* Darker Gray for active item */
+    color: #FFF9C4; /* Light Yellow for active text */
 }
 
 .content {
@@ -92,7 +142,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 .assignments-table th {
-    background-color: #4CAF50;
+    background-color: #008080;
     color: white;
 }
 .assignments-table tr:hover {

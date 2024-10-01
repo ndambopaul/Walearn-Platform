@@ -3,8 +3,8 @@ import { Types } from "mongoose";
 
 export class EnrollDto {
     @IsNotEmpty()
-    course_id: Types.ObjectId;
+    course: Types.ObjectId;
 
     @IsNotEmpty()
-    student_id: Types.ObjectId;
+    student: Types.ObjectId;
 }

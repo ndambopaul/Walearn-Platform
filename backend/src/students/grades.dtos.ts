@@ -1,13 +1,16 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsString, IsUrl } from "class-validator";
 import { Types } from "mongoose";
 
 export class GradeDto {
     @IsNotEmpty()
-    studentId: Types.ObjectId;
+    student: Types.ObjectId;
 
     @IsNotEmpty()
-    courseId: Types.ObjectId;
+    course: Types.ObjectId;
 
     @IsNotEmpty()
-    assignmentId: Types.ObjectId;
+    assignment: Types.ObjectId;
+
+    @IsString()
+    submission_link: string
 }
