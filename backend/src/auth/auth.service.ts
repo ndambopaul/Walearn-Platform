@@ -59,6 +59,7 @@ export class AuthService {
             }
             return user;
         } catch (error) {
+            console.log({ email, password })
             throw new UnauthorizedException("Invalid credentials")
         }
     }

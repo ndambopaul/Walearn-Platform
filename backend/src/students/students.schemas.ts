@@ -60,7 +60,7 @@ export class Grade {
     @Prop({ type: SchemaTypes.ObjectId, ref: "StudentAssignment" })
     assignment: StudentAssignment;
 
-    @Prop({ required: false })
+    @Prop({ required: true })
     submission_link: string;
 
     @Prop({ default: 0 })
@@ -76,6 +76,31 @@ export class Grade {
     createdAt: Date;
 }
 
+@Schema({ timestamps: true })
+export class StudentAttendance {
+    @Prop({ type: SchemaTypes.ObjectId, auto: true })
+    _id: Types.ObjectId;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Student" })
+    student: Student;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Course" })
+    course: Course;
+
+    @Prop({ required: true })
+    session_date: Date;
+
+    @Prop({ enum: ["Present", "Absent", "Pending"], default: "Pending" })
+    status: string;
+
+    @Prop({ default: true })
+    isActive: boolean;
+
+    @Prop({ default: Date.now })
+    createdAt: Date;
+}
+
 export const StudentSchema = SchemaFactory.createForClass(Student);
 export const StudentAssignmentSchema = SchemaFactory.createForClass(StudentAssignment);
 export const GradeSchema = SchemaFactory.createForClass(Grade);
+export const StudentAttendanceSchema = SchemaFactory.createForClass(StudentAttendance)

@@ -15,7 +15,6 @@ export class UsersService {
         @InjectModel(Course.name) private readonly CourseModel: Model<Course>
     ) {}
 
-
     async getAllUsers() {
         return this.userModel.find({})
     }
@@ -49,6 +48,19 @@ export class UsersService {
         }).populate("authors")
 
         return { userId: user._id, student: student, courses: courses }
+    }
+
+    async getInstructorProfile(user: User) {
+        if(user.role !== "INSTRUCTOR") {
+            return { failed: "This route can only be accessed by an instructor" }
+        }
+
+        const courses = await this.CourseModel.find({}).populate("authors")    
+         
+        const students = await this.studentModel.find({courses: {$in: courses.map(c => c._id)}}).populate("user")
+    
+
+        return { user: user, courses: courses, students: students }
     }
 
     async getUser(query: FilterQuery<User>) {

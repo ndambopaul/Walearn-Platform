@@ -7,7 +7,7 @@ import "../Dashboard.css"
 const Wrapper = ({ children }) => {
   return (
     <>
-    <Header />
+    
     <Sidebar />
     <div className="content">
     {children}

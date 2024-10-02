@@ -3,9 +3,7 @@ import Wrapper from './components/Wrapper'
 import { DataContext } from '../context/DataContext'
 
 const StudentCourses = () => {
-    const { courses, studentDetails } = useContext(DataContext)
-    
-    console.log(studentDetails)
+    const { studentDetails } = useContext(DataContext)
   return (
     <Wrapper>
         <div className="card">
@@ -21,7 +19,10 @@ const StudentCourses = () => {
                                 <p key={author._id} className="card-text"><small className="text-muted">Instructor: {author.first_name} {author.last_name}</small></p>
                             ))}
                             <p className="card-text"><small className="text-muted">Duration: {course.course_period}</small></p>
-                            <a href="/course-details" className="btn btn-primary">View Course</a>
+                            <div className="">
+                            <a href={`/student-courses/${course._id}`} className="btn btn-info me-2">Course Details</a>
+                            <a href={`/course-modules/${course._id}`} className="btn btn-primary">Course Modules</a>
+                            </div>
                         </div>
                         </div>
                     </div>

@@ -39,4 +39,10 @@ export class UsersController {
     async getStudentProfile(@CurrentUser() user: User) {
         return this.usersService.getStudentProfile(user)
     }
+
+    @Get("instructor-profile")
+    @UseGuards(JwtAuthGuard)
+    async getInstructorProfile(@CurrentUser() user: User) {
+        return this.usersService.getInstructorProfile(user)
+    }
 }
