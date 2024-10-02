@@ -46,13 +46,14 @@ export class Course {
     category: CourseCategory;
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "CourseSubCategory" })
-    sub_category: CourseSubCategory;
+    subcategory: CourseSubCategory;
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
     creator: User;
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }] })
     authors: Types.ObjectId[];
+
 
     @Prop({ required: true })
     title: string;

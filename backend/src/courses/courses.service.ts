@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ContentLink, Course, CourseCategory, CourseContent, CourseContentPart, CourseMaterial, CourseSubCategory } from './courses.schemas';
 import { Model, Types } from 'mongoose';
-import { CourseCategoryDto, CourseDto, CourseSubCategoryDto } from './courses.dtos';
+import { CourseCategoryDto, CourseDto, CourseSubCategoryDto, NewCourseAuthorDto } from './courses.dtos';
 import { User } from 'src/users/users.schemas';
 import { CourseContentDto, CourseContentPartDto, CourseMaterialDto } from './course-content.dtos';
 import { ContentLinkDto } from './content-link.dtos';

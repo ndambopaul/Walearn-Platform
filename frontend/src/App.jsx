@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from "./pages/Home"
 import CourseDetail from './pages/CourseDetail'
 
-import StudentGrades from './student/Grades'
+import StudentGrades from './student/grades/Grades'
 import StudentAssignments from './student/Assignments'
 import StudentCourses from './student/Courses'
 import StudentPayments from './student/StudentPayments'

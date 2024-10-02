@@ -31,7 +31,7 @@ export class StudentsService {
     }
 
     async getAssigmnents() {
-        return this.assignmentModel.find({})
+        return this.assignmentModel.find({}).populate("course")
     }
 
     async createAssignment(assignmentDto: StudentAssignmentDto) {
@@ -43,18 +43,14 @@ export class StudentsService {
     }
 
     async getGrades() {
-        return await this.gradeModel.find({})
+        return await this.gradeModel.find({}).populate("course").populate("student")
     }
 
     async getGradesByStudent(user: User) {
-        console.log(user)
-        
         const student = await this.studentModel.findOne({ user: user._id })
         console.log(student)
         if(!student) return []
         return await this.gradeModel.find({ student: student._id }).populate("course").populate("assignment")
-        
-       
     }
 
     async createGrade(gradeDto: GradeDto) {

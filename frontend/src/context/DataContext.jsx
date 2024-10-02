@@ -36,7 +36,6 @@ export const DataContextProvider = ({ children }) => {
                 const coursesData = await coursesResponse.json();
                 const studentData = await studentResponse.json();
                 
-    
                 setCourseCategories(categoriesData);
                 setCourseSubCategories(subCategoriesData);
                 setCourses(coursesData);

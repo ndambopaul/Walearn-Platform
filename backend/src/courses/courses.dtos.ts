@@ -27,16 +27,19 @@ export class CourseDto {
     description: string;
 
     @IsNotEmpty()
-    categoryId: Types.ObjectId;
+    category: Types.ObjectId;
 
     @IsNotEmpty()
-    subCategoryId: Types.ObjectId;
+    subcategory: Types.ObjectId;
 
 }
 
 export class NewCourseAuthorDto {
     @IsNotEmpty()
-    authorId: Types.ObjectId
+    authorId: string;
+
+    @IsNotEmpty()
+    courseId: string;
 }
 
 export class CourseCategoryDto {

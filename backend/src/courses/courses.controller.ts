@@ -109,11 +109,13 @@ export class CoursesController {
         return this.coursesService.createContentLink(contentLinkDto)
     }
 
-    @Post(":id")
+   
+  
+    @Post("add-course-author")
     @UseGuards(JwtAuthGuard)
-    async addCourseAuthor(@CurrentUser() user: User, @Param("id") id: string, @Body(ValidationPipe) authorDto: NewCourseAuthorDto) {
+    async addCourseAuthor(@CurrentUser() user: User,  @Body(ValidationPipe) authorDto: NewCourseAuthorDto) {
         const author = await this.usersService.getUser({ _id: authorDto.authorId })
-        return this.coursesService.addCourseAuthor(id, author)
+        return this.coursesService.addCourseAuthor(authorDto.courseId, author)
     }
 
 }

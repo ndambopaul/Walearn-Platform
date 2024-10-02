@@ -33,14 +33,15 @@ const Login = () => {
                 const data = await response.json()
                 const token = data.accessToken
                 Cookies.set("token", token, {expires: (1/72)})
-                navigate("/dashboard")
+                navigate("/")
                 window.location.reload()
         
             } else {
-                window.alert("Invalid Credentials")
+                toast.error("Invalid Credentials")
             }
         } catch (error) {
             console.log(error)
+            toast.error("Something went wrong")
         }
     }
 
