@@ -1,25 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from "./pages/Home"
-import CourseDetail from './pages/CourseDetail'
 
-import StudentGrades from './student/grades/Grades'
-import StudentAssignments from './student/Assignments'
-import StudentCourses from './student/Courses'
-import StudentPayments from './student/StudentPayments'
-import StudentCourseDetails from './student/StudentCourseDetails'
-import CourseModules from './student/CourseModules'
-import CourseModuleParts from './student/CourseModuleParts'
-import CourseTopics from './student/CourseTopics'
-import CourseNotes from './student/CourseNotes'
-import StudentAttendnaces from "./student/StudentAttendances"
 
-import InstructorCourses from './instructors/Courses';
-import Students from './instructors/Students'
-import Grades from './instructors/Grades'
-import Assignments from './instructors/Assignments'
-import AssignmentDetail from './student/AssignmentDetail'
+import StudentGrades from './pages/grades/Grades'
 
-import Dashboard from './Dashboard'
+import StudentCourses from './pages/courses/Courses'
+import StudentPayments from './pages/payments/StudentPayments'
+
+import StudentCourseDetails from './pages/courses/StudentCourseDetails'
+import CourseModules from './pages/courses/CourseModules'
+import CourseModuleParts from './pages/courses/CourseModuleParts'
+import CourseTopics from './pages/courses/CourseTopics'
+import CourseNotes from './pages/courses/CourseNotes'
+
+import StudentAttendnaces from "./pages/attendance/StudentAttendances"
+
+import StudentAssignments from './pages/assignments/Assignments'
+import AssignmentDetail from './pages/assignments/AssignmentDetail'
+
+import Dashboard from "./Dashboard"
 import Register from './auth/Register'
 import Login from './auth/Login'
 
@@ -31,13 +29,8 @@ function App() {
       <Router>
         <Routes>
           <Route element={<ProtectedLayout />}>
-          <Route path='/:id' element={<CourseDetail />} />
-          <Route path='' element={<Home />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/instructor-courses' element={<InstructorCourses />} />
-            <Route path='/students' element={<Students />} />
-            <Route path='/assignments' element={<Assignments />} />
-            <Route path='/grades' element={<Grades />} />
+            <Route path='' element={<Dashboard />} />
+          
             
             <Route path='/student-grades' element={<StudentGrades />} />
             <Route path='/student-assignments' element={<StudentAssignments />} />

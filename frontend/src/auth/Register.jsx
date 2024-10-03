@@ -22,14 +22,14 @@ const Register = () => {
             last_name: lastName,
             email: email,
             username: username,
-            phone_number: phoneNumber,
+            phone: phoneNumber,
             gender: gender,
             role: role,
             password: password
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/users/register`, {
+            const response = await fetch(`${BACKEND_URL}/users/register/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -39,7 +39,7 @@ const Register = () => {
 
             if (response.ok) {
                 toast.success("User account successfully created!!")
-                navigate("/auth/login")
+                //navigate("/auth/login")
             } else {
                 toast.error("Something went wrong!!")
             }
