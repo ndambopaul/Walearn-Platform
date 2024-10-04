@@ -1,6 +1,7 @@
 from django.db import models
 
 from apps.core.models import AbstractBaseModel
+
 # Create your models here.
 PAYMENT_STATUS_CHOICES = (
     ("Paid", "Paid"),
@@ -8,6 +9,8 @@ PAYMENT_STATUS_CHOICES = (
     ("Completed", "Completed"),
     ("Future", "Future"),
 )
+
+
 class StudentSubscription(AbstractBaseModel):
     student = models.ForeignKey("students.Student", on_delete=models.CASCADE)
     course = models.ForeignKey("courses.Course", on_delete=models.CASCADE)
@@ -19,7 +22,8 @@ class StudentSubscription(AbstractBaseModel):
 
     def __str__(self):
         return f"{self.student.user.first_name} {self.course.title}"
-    
+
+
 class StudentSubscriptionPayment(AbstractBaseModel):
     student = models.ForeignKey("students.Student", on_delete=models.CASCADE)
     subscription = models.ForeignKey(StudentSubscription, on_delete=models.CASCADE)

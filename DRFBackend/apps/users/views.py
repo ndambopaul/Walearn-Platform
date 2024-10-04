@@ -10,6 +10,7 @@ from apps.users.serializers import UsersSerializer, RegisterUserSerializer
 from apps.instructors.models import Instructor
 from apps.students.models import Student
 
+
 # Create your views here.
 class UsersView(generics.ListAPIView):
     serializer_class = UsersSerializer

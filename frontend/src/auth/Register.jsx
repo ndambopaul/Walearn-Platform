@@ -11,7 +11,7 @@ const Register = () => {
     const [username, setUsername] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [gender, setGender] = useState(null);
-    const [role, setRole] = useState("STUDENT");
+    const [role, setRole] = useState("Student");
     const [password, setPassword] = useState(null);
 
     const handleSubmit = async(e) => {
@@ -39,15 +39,13 @@ const Register = () => {
 
             if (response.ok) {
                 toast.success("User account successfully created!!")
-                //navigate("/auth/login")
+                navigate("/auth/login")
             } else {
                 toast.error("Something went wrong!!")
             }
         } catch (error) {
-            console.log(error)
+            toast.error(error.message)
         }
-    
-        console.log(registerData)
 
     }
 
@@ -55,9 +53,10 @@ const Register = () => {
   return (
     <div className='container mt-4'>
         <div className="row">
-            <div className="col-3"></div>
-            <div className="col-md-6 p-3 shadow-md rounded bg-white">
-            <h5 className='text-center mb-2'>SKILLFORGE REGISTRATION</h5>
+            <div className="col-2"></div>
+            <div className="col-md-8 p-3 shadow-md rounded bg-white">
+            <h5 className='text-center mb-2'>DEVS ACADEMY REGISTRATION</h5>
+            <hr/>
                 <form onSubmit={handleSubmit}>
                     <div className="row mb-3">
                         <div className="col">
@@ -102,11 +101,11 @@ const Register = () => {
                     <div className="text-center mt-3">
                         <button className="btn btn-primary w-100" type="submit">REGISTER</button>
                         <br/>
-                        <p>Already have an account? <a href='/auth/login'>Login Here</a></p>
+                        <p className='mt-3'>Already have an account? <a href='/auth/login'>Login Here</a></p>
                     </div>
                 </form>
             </div>
-            <div className="col-3"></div>
+            <div className="col-2"></div>
         </div>
     </div>
   )

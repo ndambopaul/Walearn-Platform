@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from apps.payments.models import StudentSubscription, StudentSubscriptionPayment
 
+
 class StudentSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentSubscription

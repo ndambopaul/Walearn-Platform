@@ -4,13 +4,25 @@ from apps.payments.views import (
     StudentSubscriptionPaymentDetailAPIView,
     StudentSubscriptionAPIView,
     StudentSubscriptionPaymentAPIView,
-    RecordPaymentAPIView
+    RecordPaymentAPIView,
 )
 
 urlpatterns = [
-    path('subscriptions/', StudentSubscriptionAPIView.as_view(), name='subscriptions'),
-    path('subscriptions/<int:pk>/', StudentSubscriptionDetailAPIView.as_view(), name='subscription-detail'),
-    path('subscription-payments/', StudentSubscriptionPaymentAPIView.as_view(), name='subscription-payments'),
-    path('subscription-payments/<int:pk>/', StudentSubscriptionPaymentDetailAPIView.as_view(), name='subscription-payment-detail'),
-    path('record-payment/', RecordPaymentAPIView.as_view(), name='record-payment'),
+    path("subscriptions/", StudentSubscriptionAPIView.as_view(), name="subscriptions"),
+    path(
+        "subscriptions/<int:pk>/",
+        StudentSubscriptionDetailAPIView.as_view(),
+        name="subscription-detail",
+    ),
+    path(
+        "subscription-payments/",
+        StudentSubscriptionPaymentAPIView.as_view(),
+        name="subscription-payments",
+    ),
+    path(
+        "subscription-payments/<int:pk>/",
+        StudentSubscriptionPaymentDetailAPIView.as_view(),
+        name="subscription-payment-detail",
+    ),
+    path("record-payment/", RecordPaymentAPIView.as_view(), name="record-payment"),
 ]

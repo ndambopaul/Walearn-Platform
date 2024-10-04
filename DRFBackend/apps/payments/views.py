@@ -6,9 +6,15 @@ from rest_framework import status, generics
 from rest_framework.permissions import IsAuthenticated
 
 from apps.payments.models import StudentSubscription, StudentSubscriptionPayment
-from apps.payments.serializers import StudentSubscriptionSerializer, StudentSubscriptionPaymentSerializer, RecordPaymentSerializer
+from apps.payments.serializers import (
+    StudentSubscriptionSerializer,
+    StudentSubscriptionPaymentSerializer,
+    RecordPaymentSerializer,
+)
+
 # Create your views here.
 date_today = datetime.now().date()
+
 
 class StudentSubscriptionAPIView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -20,7 +26,7 @@ class StudentSubscriptionAPIView(generics.ListCreateAPIView):
         if user.role == "Student":
             return self.queryset.filter(student__user=user)
         return super().get_queryset()
-    
+
 
 class StudentSubscriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
@@ -40,7 +46,7 @@ class StudentSubscriptionPaymentAPIView(generics.ListCreateAPIView):
         if user.role == "Student":
             return self.queryset.filter(student__user=user)
         return super().get_queryset()
-    
+
 
 class StudentSubscriptionPaymentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]

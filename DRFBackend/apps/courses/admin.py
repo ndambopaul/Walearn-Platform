@@ -8,7 +8,7 @@ from apps.courses.models import (
     CourseContentLink,
     CourseModuleTopic,
     CourseSession,
-    CourseAssignment
+    CourseAssignment,
 )
 
 
@@ -52,6 +52,7 @@ class CourseModuleTopicAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "course_module")
     search_fields = ("title",)
     list_filter = ("course_module",)
+
 
 @admin.register(CourseContent)
 class CourseContentAdmin(admin.ModelAdmin):

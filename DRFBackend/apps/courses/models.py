@@ -53,6 +53,7 @@ class CourseModuleTopic(AbstractBaseModel):
     def __str__(self):
         return self.title
 
+
 class CourseContent(AbstractBaseModel):
     title = models.CharField(max_length=250)
     course_topic = models.ForeignKey(CourseModuleTopic, on_delete=models.CASCADE)
@@ -79,7 +80,8 @@ class CourseSession(AbstractBaseModel):
 
     def __str__(self):
         return f"{self.course.title} - {self.session_date}"
-    
+
+
 class CourseAssignment(AbstractBaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
@@ -91,4 +93,3 @@ class CourseAssignment(AbstractBaseModel):
 
     def __str__(self):
         return self.title
-    

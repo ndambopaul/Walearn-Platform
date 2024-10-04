@@ -20,6 +20,7 @@ import AssignmentDetail from './pages/assignments/AssignmentDetail'
 import Dashboard from "./Dashboard"
 import Register from './auth/Register'
 import Login from './auth/Login'
+import Profile from './pages/profile/Profile'
 
 import ProtectedLayout from './ProtectedLayout'
 
@@ -30,8 +31,7 @@ function App() {
         <Routes>
           <Route element={<ProtectedLayout />}>
             <Route path='' element={<Dashboard />} />
-          
-            
+            <Route path='/profile' element={<Profile />} />
             <Route path='/student-grades' element={<StudentGrades />} />
             <Route path='/student-assignments' element={<StudentAssignments />} />
             <Route path='/student-assignments/:id' element={<AssignmentDetail />} />

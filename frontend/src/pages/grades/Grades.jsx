@@ -5,7 +5,7 @@ import Dayjs from 'dayjs'
 import { BACKEND_URL } from '../../services/constants';
 import { FaEdit } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
-import EditAssignmentSubmission from '../../components/EditAssignmentSubmission';
+import EditAssignmentSubmission from './EditAssignmentSubmission';
 import GradeDetails from './GradeDetails';
 
 
@@ -26,11 +26,10 @@ const StudentGrades = () => {
             setGrades(data)
         }
         getGrades();
-    }, [0])
-
+    }, [grades])
   return (
     <Wrapper>
-        <EditAssignmentSubmission />
+       
         <div className="card">
             <h2>Your Grades</h2>
             <table className="assignments-table">
@@ -54,10 +53,8 @@ const StudentGrades = () => {
                         <td>{Dayjs(grade?.assignment.due_date).format("YYYY-MM-DD HH:mm")}</td>
                         <td>{grade.grade}</td>
                         <td className="status">{grade.status}</td>
-                       
-                        <td><a href="#" className='btn btn-info btn-sm' data-bs-toggle="modal" data-bs-target="#gradeDetailsModal"><IoEyeOutline /></a></td>
-                        
-                        <td><a href="#" className='btn btn-primary btn-sm' data-bs-toggle="modal" data-bs-target="#editGradModal"><FaEdit /></a></td>
+                        <td><GradeDetails grade={grade}/></td>
+                        <td><EditAssignmentSubmission grade={grade} /></td>
                        
                 </tr>
                 ))}

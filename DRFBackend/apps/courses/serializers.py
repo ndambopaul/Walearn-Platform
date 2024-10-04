@@ -6,8 +6,8 @@ from apps.courses.models import (
     CourseModule,
     CourseContent,
     CourseContentLink,
-    CourseModuleTopic, 
-    CourseAssignment
+    CourseModuleTopic,
+    CourseAssignment,
 )
 
 
@@ -55,6 +55,7 @@ class CourseContentLinkSerializer(serializers.ModelSerializer):
 
 class CourseAssignmentSerializer(serializers.ModelSerializer):
     course_title = serializers.SerializerMethodField()
+
     class Meta:
         model = CourseAssignment
         fields = "__all__"
