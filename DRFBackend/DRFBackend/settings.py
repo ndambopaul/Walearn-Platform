@@ -141,6 +141,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
+# settings.py
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://walearn-platform.onrender.com',
+]
+
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
