@@ -50,7 +50,8 @@ const Login = () => {
             <div className="col-3"></div>
             <div className="col-6 p-5 shadow-md rounded bg-white">
                 <form onSubmit={handleLogin}>
-                    <h3 className='text-center'>DEVS LOGIN</h3>
+                    <h5 className='text-center'>DEVS ACADEMY LOGIN</h5>
+                    <hr/>
                     <div className="mb-3">
                         <label className='form-label'>Username</label>
                         <input type='text' id='username' name='username' className='form-control' onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
