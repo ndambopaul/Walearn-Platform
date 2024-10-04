@@ -5,24 +5,16 @@ import Cookies from 'js-cookie';
 export const DataContext = createContext(null)
 
 export const DataContextProvider = ({ children }) => {
-    const [courseCategories, setCourseCategories] = useState([])
-    const [courseSubCategories, setCourseSubCategories] = useState([])
-    const [courses, setCourses] = useState([])
-    const [studentDetails, setStudentDetails] = useState(null)
-    const [assignments, setAssignments] = useState([])
-
-    const token = Cookies.get('token');
+    const [studentDetails, setStudentDetails] = useState({})
     
+    const token = Cookies.get('token');
 
     useEffect(() => {
         const fetchCategoriesData = async () => {
             try {
-                const [categoriesResponse, subCategoriesResponse, coursesResponse, studentResponse] = await Promise.all([
-                    fetch(`${BACKEND_URL}/courses/categories`),
-                    fetch(`${BACKEND_URL}/courses/sub-categories`),
-                    fetch(`${BACKEND_URL}/courses`),
-            
-                    fetch(`${BACKEND_URL}/users/student-profile`, {
+                const [studentResponse] = await Promise.all([
+                    
+                    fetch(`${BACKEND_URL}/students/student-profile`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -31,14 +23,7 @@ export const DataContextProvider = ({ children }) => {
                     }),
                 ]);
     
-                const categoriesData = await categoriesResponse.json();
-                const subCategoriesData = await subCategoriesResponse.json();
-                const coursesData = await coursesResponse.json();
                 const studentData = await studentResponse.json();
-                
-                setCourseCategories(categoriesData);
-                setCourseSubCategories(subCategoriesData);
-                setCourses(coursesData);
                 setStudentDetails(studentData);
                 
                 
@@ -49,8 +34,9 @@ export const DataContextProvider = ({ children }) => {
     
         fetchCategoriesData();
     }, []);
+    
 
-    return <DataContext.Provider value={{ courseCategories, courseSubCategories, courses, studentDetails }}>
+    return <DataContext.Provider value={{ studentDetails }}>
         {children}
     </DataContext.Provider>
 }
