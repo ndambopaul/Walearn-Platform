@@ -23,18 +23,18 @@ const Assignments = () => {
                             <th scope="col">Course</th>
                             <th scope="col">Assignment Title</th>
                             <th scope="col">Due Date</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Score</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {assignments && assignments.map((assignment, index) => (
-                            <tr key={assignment._id}>
+                            <tr key={assignment.id}>
                                 <td>{index + 1}</td>
-                                <td>{assignment?.course.title}</td>
+                                <td>{assignment?.course_title}</td>
                                 <td>{assignment.title}</td>
                                 <td>{Dayjs(assignment.due_date).format("MMMM D, YYYY")}</td>
-                                <td className="status pending">{assignment.status}</td>
+                                <td>/{assignment.total_score}</td>
                                 <td><a href="#" className="btn btn-primary btn-sm">Review Now</a></td>
                             </tr>
                         ))}

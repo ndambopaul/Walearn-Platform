@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import { BACKEND_URL } from '../services/constants';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const [email, setEmail] = useState(null);
+    const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
 
     const navigate = useNavigate()
@@ -14,12 +14,12 @@ const Login = () => {
         e.preventDefault();
 
         const loginData = {
-            email: email,
+            username: username,
             password: password
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/auth/login`, {
+            const response = await fetch(`${BACKEND_URL}/users/login/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -29,9 +29,8 @@ const Login = () => {
 
             if (response.ok) {
                 toast.success("Login was successful")
-
                 const data = await response.json()
-                const token = data.accessToken
+                const token = data.access
                 Cookies.set("token", token, {expires: (1/72)})
                 navigate("/")
                 window.location.reload()
@@ -51,10 +50,10 @@ const Login = () => {
             <div className="col-3"></div>
             <div className="col-6 p-5 shadow-md rounded bg-white">
                 <form onSubmit={handleLogin}>
-                    <h3 className='text-center'>SKILLFORGE LOGIN</h3>
+                    <h3 className='text-center'>DEVS ACADEMY LOGIN</h3>
                     <div className="mb-3">
-                        <label className='form-label'>Email</label>
-                        <input type='email' id='email' name='email' className='form-control' onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
+                        <label className='form-label'>Username</label>
+                        <input type='text' id='username' name='username' className='form-control' onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
                     </div>
                     <div className="mb-3">
                         <label className='form-label'>Password</label>
@@ -63,7 +62,7 @@ const Login = () => {
                     <div className="text-center">
                         <button className="btn btn-primary w-100" type="submit">Login</button>
                         <br/>
-                        <p className='mt-3'>No account yet? <a href='/auth/register'>Register Here</a></p>
+                        <p className='mt-3'>No account yet? <a href='/register'>Register Here</a></p>
                     </div>
                 </form>
             </div>

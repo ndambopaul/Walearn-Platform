@@ -6,7 +6,8 @@ import { BACKEND_URL } from "../services/constants";
 export const DataContext = createContext(null);
 
 export const DataContextProvider = ({ children }) => {
-    const [instructorDetails, setInstructorDetails] = useState(null);
+    const [students, setStudents] = useState([]);
+    const [attendances, setAttendances] = useState([]);
     const [assignments, setAssignments] = useState([]);
     const [grades, setGrades] = useState([]);
 
@@ -15,25 +16,52 @@ export const DataContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [instructorDataResponse, assignmentsResponse, gradesResponse] = await Promise.all([
-                    fetch(`${BACKEND_URL}/users/instructor-profile`, {
+                const [studentsResponse, attendanceResponse, assignmentsResponse, gradesResponse] = await Promise.all([
+                    
+                    fetch(`${BACKEND_URL}/students`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${token}`
                         }
                     }),
-                    fetch(`${BACKEND_URL}/students/assignments`),
-                    fetch(`${BACKEND_URL}/students/grades`)
+
+                    fetch(`${BACKEND_URL}/students/attendances`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }),
+
+                    fetch(`${BACKEND_URL}/courses/assignments`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }),
+
+                    fetch(`${BACKEND_URL}/students/assignments-submissions`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }),
+
                 ]);
     
-                const instructorData = await instructorDataResponse.json();
+                const studentData = await studentsResponse.json();
+                const attendanceData = await attendanceResponse.json();
                 const assignmentsData = await assignmentsResponse.json();
                 const gradesData = await gradesResponse.json();
-                setInstructorDetails(instructorData)
-                setAssignments(assignmentsData)
-                setGrades(gradesData)
-               
+
+                setStudents(studentData);
+                setAttendances(attendanceData);
+                setAssignments(assignmentsData);
+                setGrades(gradesData);
+                
             } catch (error) {
                 console.error("Failed to fetch course categories or sub-categories:", error);
             }
@@ -43,7 +71,7 @@ export const DataContextProvider = ({ children }) => {
     }, []);
 
     
-    return <DataContext.Provider value={{ instructorDetails, assignments, grades }}>
+    return <DataContext.Provider value={{ students, attendances, assignments, grades }}>
         {children}
     </DataContext.Provider>;
 }

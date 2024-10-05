@@ -161,11 +161,12 @@ class CourseAssigmentAPIView(generics.ListCreateAPIView):
         user = self.request.user
 
         if user.role == "Student":
-            student_courses = user.student.studentcourses.all().values_list(
-                "course_id", flat=True
-            )
+            student_courses = user.student.studentcourses.all().values_list("course_id", flat=True)
 
             return self.queryset.filter(course__id__in=list(student_courses))
+        elif user.role == "Instructor":
+            instructor_courses = user.instructor.instructorcourses.all().values_list("course_id", flat=True)
+            return self.queryset.filter(course__id__in=list(instructor_courses))
 
         return super().get_queryset()
 

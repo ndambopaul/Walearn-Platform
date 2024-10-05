@@ -9,14 +9,16 @@ import Instructors from "../components/Instructors/index";
 import PopularCourses from "../components/Courses/index";
 import InstructorTestimonials from "../components/WhatInstructorsSay/index";
 import StudentTestimonial from "../components/WhatStudentsSay/index";
+import ShortCourses from "../components/Courses/shortcourses/shortCourses";
 const Home = () => {
   return (
     <div className=''>
    
 
       <Hero />
-      <WhyChooseUs />
       <PopularCourses />
+      <WhyChooseUs />
+      <ShortCourses />
       <Instructors />
       <InstructorTestimonials />
       <StudentTestimonial />

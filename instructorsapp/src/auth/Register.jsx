@@ -11,7 +11,7 @@ const Register = () => {
     const [username, setUsername] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [gender, setGender] = useState(null);
-    const [role, setRole] = useState("STUDENT");
+    const [role, setRole] = useState("Instructor");
     const [password, setPassword] = useState(null);
 
     const handleSubmit = async(e) => {
@@ -29,7 +29,7 @@ const Register = () => {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/users/register`, {
+            const response = await fetch(`${BACKEND_URL}/users/register/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -57,7 +57,7 @@ const Register = () => {
         <div className="row">
             <div className="col-3"></div>
             <div className="col-md-6 p-3 shadow-md rounded bg-white">
-            <h5 className='text-center mb-2'>SKILLFORGE REGISTRATION</h5>
+            <h5 className='text-center mb-2'>DEVS ACADEMY REGISTRATION</h5>
                 <form onSubmit={handleSubmit}>
                     <div className="row mb-3">
                         <div className="col">
@@ -102,7 +102,7 @@ const Register = () => {
                     <div className="text-center mt-3">
                         <button className="btn btn-primary w-100" type="submit">REGISTER</button>
                         <br/>
-                        <p>Already have an account? <a href='/auth/login'>Login Here</a></p>
+                        <p className='mt-3'>Already have an account? <a href='/login'>Login Here</a></p>
                     </div>
                 </form>
             </div>

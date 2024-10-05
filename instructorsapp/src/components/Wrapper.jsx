@@ -1,13 +1,16 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+
+import "../Dashboard.css"
 
 const Wrapper = ({ children }) => {
   return (
     <>
-    <Navbar />
-    <>
-        {children}
-    </>
+    
+    <Sidebar />
+    <div className="content">
+    {children}
+    </div>
     </>
   )
 }
