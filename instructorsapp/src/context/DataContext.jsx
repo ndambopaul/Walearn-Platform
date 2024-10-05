@@ -10,13 +10,14 @@ export const DataContextProvider = ({ children }) => {
     const [attendances, setAttendances] = useState([]);
     const [assignments, setAssignments] = useState([]);
     const [grades, setGrades] = useState([]);
+    const [instructorDetails, setInstructorDetails] = useState(null);
 
     const token = Cookies.get("token");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [studentsResponse, attendanceResponse, assignmentsResponse, gradesResponse] = await Promise.all([
+                const [studentsResponse, attendanceResponse, assignmentsResponse, gradesResponse, instructorDetailsResponse] = await Promise.all([
                     
                     fetch(`${BACKEND_URL}/students`, {
                         method: "GET",
@@ -50,17 +51,27 @@ export const DataContextProvider = ({ children }) => {
                         }
                     }),
 
+                    fetch(`${BACKEND_URL}/instructors/profile`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
+                    })
+
                 ]);
     
                 const studentData = await studentsResponse.json();
                 const attendanceData = await attendanceResponse.json();
                 const assignmentsData = await assignmentsResponse.json();
                 const gradesData = await gradesResponse.json();
+                const instructorDetails = await instructorDetailsResponse.json();
 
                 setStudents(studentData);
                 setAttendances(attendanceData);
                 setAssignments(assignmentsData);
                 setGrades(gradesData);
+                setInstructorDetails(instructorDetails);
                 
             } catch (error) {
                 console.error("Failed to fetch course categories or sub-categories:", error);
@@ -71,7 +82,7 @@ export const DataContextProvider = ({ children }) => {
     }, []);
 
     
-    return <DataContext.Provider value={{ students, attendances, assignments, grades }}>
+    return <DataContext.Provider value={{ students, attendances, assignments, grades, instructorDetails }}>
         {children}
     </DataContext.Provider>;
 }
