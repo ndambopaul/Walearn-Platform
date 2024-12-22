@@ -1,21 +1,26 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Wrapper from "../../components/Wrapper";
-
-import { DataContext } from "../../context/DataContext";
+import Cookies from "js-cookie"
+import { BACKEND_URL } from "../../services/constants";
 
 
 const Courses = () => {
-  const { instructorDetails } = useContext(DataContext);
+  const [courses, setCourses] = useState([]);
 
-  const courses = instructorDetails?.courses;
-  const authorId = instructorDetails?.user._id
-
-  var filteredCourses = [];
-  if(courses) {
-    filteredCourses = courses.filter(course => 
-      course.authors.some(author => author._id === authorId)
-    );
-  }
+    useEffect(() => {
+        const getCourses = async () => {
+            const response = await fetch(`${BACKEND_URL}/courses`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${Cookies.get('token')}`
+                }
+            });
+            const data = await response.json();
+            setCourses(data);
+        };
+        getCourses();
+    }, []);
 
   return (
     <Wrapper>
@@ -34,7 +39,7 @@ const Courses = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredCourses && filteredCourses.map((course, index) => (
+                        {courses && courses.map((course, index) => (
                             <tr key={course._id}>
                                 <td>{index + 1}</td>
                                 <td>{course?.title}</td>

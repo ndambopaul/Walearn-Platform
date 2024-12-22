@@ -9,7 +9,8 @@ from apps.students.models import Attendance, AssigmentSubmission, Student, Stude
 from apps.students.serializers import (
     AttendanceSerializer,
     AssigmentSubmissionSerializer,
-    SubmitAssignmentSerializer
+    SubmitAssignmentSerializer,
+    StudentSerializer
 )
 
 
@@ -26,6 +27,12 @@ class AttendanceAPIView(generics.ListCreateAPIView):
             return Attendance.objects.filter(student__user=self.request.user).order_by(
                 "-created_at"
             )
+        elif user.role == "Instructor":
+            instructor_courses = user.instructor.instructorcourses.all().values_list("course_id", flat=True)
+            student_courses = StudentCourse.objects.filter(course__id__in=list(instructor_courses)).values_list("student_id", flat=True)
+
+            return self.queryset.filter(student__id__in=list(student_courses))
+
         return super().get_queryset()
 
 
@@ -41,6 +48,12 @@ class AssigmentSubmissionAPIView(generics.ListCreateAPIView):
             return AssigmentSubmission.objects.filter(
                 student__user=self.request.user
             ).order_by("-created_at")
+        elif user.role == "Instructor":
+            instructor_courses = user.instructor.instructorcourses.all().values_list("course_id", flat=True)
+            student_courses = StudentCourse.objects.filter(course__id__in=list(instructor_courses)).values_list("student_id", flat=True)
+
+            return self.queryset.filter(student__id__in=list(student_courses))
+
         return super().get_queryset()
 
 
@@ -95,3 +108,18 @@ class StudentProfileAPIView(APIView):
             "attendances_count": attendances.count()
         }
         return Response(response, status=status.HTTP_200_OK)
+
+
+class StudentAPIView(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.role == "Instructor":
+            instructor_courses = user.instructor.instructorcourses.all().values_list("course_id", flat=True)
+            student_courses = StudentCourse.objects.filter(course__id__in=list(instructor_courses)).values_list("student_id", flat=True)
+            return Student.objects.filter(id__in=list(student_courses))
+        return super().get_queryset()

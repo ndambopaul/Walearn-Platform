@@ -4,7 +4,7 @@ import Wrapper from "../../components/Wrapper";
 import { DataContext } from "../../context/DataContext";
 
 const Students = () => {
-    const { instructorDetails } = useContext(DataContext);
+    const { students } = useContext(DataContext);
 
   return (
     <Wrapper>
@@ -28,14 +28,14 @@ const Students = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {instructorDetails?.students && instructorDetails?.students.map((student, index) => (
+                    {students && students.map((student, index) => (
                         <tr key={student._id}>
                             <td>{index + 1}</td>
-                            <td>{student?.user.first_name} {student?.user.last_name}</td>
-                            <td>{student?.user.phone_number}</td>
-                            <td>{student?.user.email}</td>
-                            <td>{student?.user.gender}</td>
-                            <td>{student.status}</td>
+                            <td>{student?.user_details.first_name} {student?.user_details.last_name}</td>
+                            <td>{student?.user_details.phone}</td>
+                            <td>{student?.user_details.email}</td>
+                            <td>{student?.user_details.gender}</td>
+                            <td>{student.is_active ? "Active" : "Inactive"}</td>
                             <td><a href="#" className="btn btn-primary btn-sm">View Details</a></td>
                         </tr>
                     ))}

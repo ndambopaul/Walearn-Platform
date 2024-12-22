@@ -10,6 +10,9 @@ import Students from "./pages/students/Students";
 import Courses from "./pages/courses/Courses";
 import CourseModules from "./pages/courses/CourseModules";
 
+import Attendances from "./pages/attendance/Attendances";
+import Profile from "./pages/profile/Profile";
+
 import Grades from "./pages/grades/Grades";
 
 function App() {
@@ -23,6 +26,8 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/course-modules" element={<CourseModules />} />
           <Route path="/grades" element={<Grades />} />
+          <Route path="/attendances" element={<Attendances />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
